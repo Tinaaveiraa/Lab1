@@ -6,12 +6,12 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private String especificacion;
-    private int numRegistro;
+    private Integer numRegistro;
     private float precio;
     //private Categoria *catPadre;
     //atributo imagen
 
-    public Producto(String n, String desc, String espe, int numReg, float prec)// Categoria *catP 
+    public Producto(String n, String desc, String espe, Integer numReg, float prec)// Categoria *catP 
     {
     	
     	this.nombre = n;
@@ -34,7 +34,7 @@ public class Producto {
         return especificacion;
     }
 
-    public int getNumReg() {
+    public Integer getNumReg() {
         return numRegistro;
     }
 
@@ -53,7 +53,7 @@ public class Producto {
         especificacion = espe;
     }
 
-    public void setNumReg(int numReg) {
+    public void setNumReg(Integer numReg) {
         numRegistro = numReg;
     }
 
