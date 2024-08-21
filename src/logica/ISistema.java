@@ -17,7 +17,7 @@ public interface ISistema {
      * @param fnacimiento Fecha de nacimiento del cliente.
      * @throws ClienteRepetidoException Si el cliente ya está registrado en el sistema.
      */
-    public abstract void registrarCliente(String nickname, String email, String nombre, String apellido, Date fNacimiento) throws ClienteRepetidoException;
+    public abstract void registrarCliente(String nickname, String email, String nombre, String apellido, Date fnacimiento) throws ClienteRepetidoException;
     /**
      * Registra al proveedor en el sistema.
      * @param nickname Nickname del proveedor.
