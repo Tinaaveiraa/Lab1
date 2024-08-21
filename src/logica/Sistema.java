@@ -12,13 +12,13 @@ public class Sistema implements ISistema {
     }
 
     // Registro de Cliente
-    public void registrarCliente(String nickname, String email, String nombre, String apellido, Date fnacimiento) throws ClienteRepetidoException {
+    public void registrarCliente(String nickname, String email, String nombre, String apellido, Date fNacimiento) throws ClienteRepetidoException {
         ManejadorCliente mc = ManejadorCliente.getInstance();
         Cliente c = mc.obtenerCliente(nickname);
         if (c != null)
             throw new ClienteRepetidoException("El cliente con nickname " + nickname + " ya está registrado");
 
-        c = new Cliente(nickname, email, nombre, apellido, fnacimiento);
+        c = new Cliente(nickname, email, nombre, apellido, fNacimiento);
         mc.addCliente(c);
     }
 
