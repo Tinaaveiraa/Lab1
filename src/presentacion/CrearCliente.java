@@ -14,7 +14,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JFrame;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
 
@@ -176,11 +175,11 @@ public class CrearCliente extends JInternalFrame {
         String emailP = textFieldEmail.getText();
         String nombreP = textFieldNombre.getText();
         String apellidoP = textFieldApellido.getText();
-        String fNacimientoP = obtenerFechaString(); // Convierte la fecha a String
+        Date fechaNacimientoP = dateChooser.getDate(); // Obtiene la fecha como Date
 
         if (checkFormulario()) {
             try {
-                Sis.registrarCliente(nicknameP, emailP, nombreP, apellidoP, fNacimientoP); // Se pasa la fecha como String
+                Sis.registrarCliente(nicknameP, emailP, nombreP, apellidoP, fechaNacimientoP); // Se pasa la fecha como Date
 
                 JOptionPane.showMessageDialog(this, "El Cliente se ha creado con éxito", "Registrar Cliente",
                         JOptionPane.INFORMATION_MESSAGE);
@@ -199,7 +198,7 @@ public class CrearCliente extends JInternalFrame {
         String email = textFieldEmail.getText();
         String nombre = textFieldNombre.getText();
         String apellido = textFieldApellido.getText();
-        String fechaNac = obtenerFechaString(); // Obtiene la fecha como String
+        Date fechaNac = dateChooser.getDate(); // Obtiene la fecha como Date
 
         if (nickname.isEmpty() || email.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || fechaNac == null) {
             JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Cliente",
@@ -209,7 +208,7 @@ public class CrearCliente extends JInternalFrame {
 
         return true;
     }
-
+    
     private void limpiarFormulario() {
         textFieldNickname.setText("");
         textFieldEmail.setText("");
@@ -218,15 +217,6 @@ public class CrearCliente extends JInternalFrame {
         dateChooser.setDate(null);
     }
 
-    private String obtenerFechaString() {
-        Date fecha = dateChooser.getDate();
-        if (fecha != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return sdf.format(fecha);
-        } else {
-            return null; // O cualquier valor que indique que la fecha no está disponible
-        }
-    }
 }
 
 

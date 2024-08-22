@@ -1,210 +1,265 @@
 package presentacion;
 
-import javax.swing.JInternalFrame;
-import excepciones.ClienteNoExisteException;
-import logica.DataCliente;
-import logica.ISistema;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.JInternalFrame;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.JFrame;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import com.toedter.calendar.JDateChooser;
+import java.util.Date;
+import excepciones.ProveedorRepetidoException;
+import logica.ISistema;
 
 @SuppressWarnings("serial")
-public class DataCliente extends JInternalFrame {
+public class CrearProveedor extends JInternalFrame {
 
-    private ISistema sistema;
+    private ISistema Sis;
 
     private JTextField textFieldNickname;
     private JTextField textFieldEmail;
     private JTextField textFieldNombre;
     private JTextField textFieldApellido;
-    private JTextField textFieldFechaNac; // Campo de texto para mostrar la fecha
-
-    private JLabel lblNickname;
-    private JButton btnBuscar;
-    private JLabel lblNombre;
-    private JLabel lblApellido;
-    private JLabel lblFechaNac;
-
-    private JButton btnCerrar;
-    private JLabel lblInfoCliente;
+    private JTextField textFieldNombreEmpresa;
+    private JTextField textFieldUrlEmpresa;
     private JDateChooser dateChooser;
+    
+    private JLabel lblIngreseNickname;
+    private JLabel lblIngreseEmail;
+    private JLabel lblIngreseNombre;
+    private JLabel lblIngreseApellido;
+    private JLabel lblIngreseFechaNac;
+    private JLabel lblIngreseNombreEmpresa;
+    private JLabel lblIngreseUrlEmpresa;
+    private JButton btnAceptar;
+    private JButton btnCancelar;
 
-    public InfoCliente(ISistema isis) {
-        sistema = isis;
+    public CrearProveedor(ISistema isis) {
+        Sis = isis;
 
         setResizable(true);
         setIconifiable(true);
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
-        setTitle("Consultar Info Cliente");
-        setBounds(30, 30, 400, 300);
+        setTitle("Registrar un Proveedor");
+        setBounds(10, 40, 360, 300);
 
         GridBagLayout gridBagLayout = new GridBagLayout();
-        gridBagLayout.columnWidths = new int[] { 120, 200, 0 };
-        gridBagLayout.rowHeights = new int[] { 25, 30, 30, 30, 30, 0 };
-        gridBagLayout.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-        gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+        gridBagLayout.columnWidths = new int[] { 100, 150, 150, 0 };
+        gridBagLayout.rowHeights = new int[] { 25, 25, 25, 25, 25, 25, 25, 0 };
+        gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, Double.MIN_VALUE };
+        gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
         getContentPane().setLayout(gridBagLayout);
 
-        lblNickname = new JLabel("Ingrese Nickname:");
-        GridBagConstraints gbc_lblNickname = new GridBagConstraints();
-        gbc_lblNickname.insets = new Insets(10, 10, 5, 5);
-        gbc_lblNickname.anchor = GridBagConstraints.EAST;
-        gbc_lblNickname.gridx = 0;
-        gbc_lblNickname.gridy = 0;
-        getContentPane().add(lblNickname, gbc_lblNickname);
-
+        lblIngreseNickname = new JLabel("Nickname:");
+        lblIngreseNickname.setHorizontalAlignment(SwingConstants.RIGHT);
+        GridBagConstraints gbc_lblIngreseNickname = new GridBagConstraints();
+        gbc_lblIngreseNickname.insets = new Insets(2, 2, 2, 5);
+        gbc_lblIngreseNickname.gridx = 0;
+        gbc_lblIngreseNickname.gridy = 0;
+        getContentPane().add(lblIngreseNickname, gbc_lblIngreseNickname);
+        
         textFieldNickname = new JTextField();
         GridBagConstraints gbc_textFieldNickname = new GridBagConstraints();
-        gbc_textFieldNickname.insets = new Insets(10, 0, 5, 10);
+        gbc_textFieldNickname.gridwidth = 2;
+        gbc_textFieldNickname.insets = new Insets(2, 2, 2, 5);
         gbc_textFieldNickname.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldNickname.gridx = 1;
         gbc_textFieldNickname.gridy = 0;
         getContentPane().add(textFieldNickname, gbc_textFieldNickname);
         textFieldNickname.setColumns(10);
+        
+        lblIngreseEmail = new JLabel("Email:");
+        lblIngreseEmail.setHorizontalAlignment(SwingConstants.RIGHT);
+        GridBagConstraints gbc_lblIngreseEmail = new GridBagConstraints();
+        gbc_lblIngreseEmail.insets = new Insets(2, 2, 2, 5);
+        gbc_lblIngreseEmail.gridx = 0;
+        gbc_lblIngreseEmail.gridy = 1;
+        getContentPane().add(lblIngreseEmail, gbc_lblIngreseEmail);
+        
+        textFieldEmail = new JTextField();
+        GridBagConstraints gbc_textFieldEmail = new GridBagConstraints();
+        gbc_textFieldEmail.gridwidth = 2;
+        gbc_textFieldEmail.insets = new Insets(2, 2, 2, 5);
+        gbc_textFieldEmail.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldEmail.gridx = 1;
+        gbc_textFieldEmail.gridy = 1;
+        getContentPane().add(textFieldEmail, gbc_textFieldEmail);
+        textFieldEmail.setColumns(10);
 
-        btnBuscar = new JButton("Buscar");
-        btnBuscar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cmdBuscarClienteActionPerformed(e);
-            }
-        });
-        GridBagConstraints gbc_btnBuscar = new GridBagConstraints();
-        gbc_btnBuscar.insets = new Insets(10, 0, 5, 10);
-        gbc_btnBuscar.gridx = 2;
-        gbc_btnBuscar.gridy = 0;
-        getContentPane().add(btnBuscar, gbc_btnBuscar);
-
-        lblInfoCliente = new JLabel("Información de Cliente");
-        GridBagConstraints gbc_lblInfoCliente = new GridBagConstraints();
-        gbc_lblInfoCliente.insets = new Insets(10, 10, 5, 5);
-        gbc_lblInfoCliente.gridwidth = 3;
-        gbc_lblInfoCliente.gridx = 0;
-        gbc_lblInfoCliente.gridy = 1;
-        getContentPane().add(lblInfoCliente, gbc_lblInfoCliente);
-
-        lblNombre = new JLabel("Nombre:");
-        GridBagConstraints gbc_lblNombre = new GridBagConstraints();
-        gbc_lblNombre.insets = new Insets(5, 10, 5, 5);
-        gbc_lblNombre.anchor = GridBagConstraints.EAST;
-        gbc_lblNombre.gridx = 0;
-        gbc_lblNombre.gridy = 2;
-        getContentPane().add(lblNombre, gbc_lblNombre);
+        lblIngreseNombre = new JLabel("Nombre:");
+        lblIngreseNombre.setHorizontalAlignment(SwingConstants.RIGHT);
+        GridBagConstraints gbc_lblIngreseNombre = new GridBagConstraints();
+        gbc_lblIngreseNombre.insets = new Insets(2, 2, 2, 5);
+        gbc_lblIngreseNombre.gridx = 0;
+        gbc_lblIngreseNombre.gridy = 2;
+        getContentPane().add(lblIngreseNombre, gbc_lblIngreseNombre);
 
         textFieldNombre = new JTextField();
-        textFieldNombre.setEditable(false);
         GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
-        gbc_textFieldNombre.insets = new Insets(5, 0, 5, 10);
+        gbc_textFieldNombre.gridwidth = 2;
+        gbc_textFieldNombre.insets = new Insets(2, 2, 2, 5);
         gbc_textFieldNombre.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldNombre.gridx = 1;
         gbc_textFieldNombre.gridy = 2;
         getContentPane().add(textFieldNombre, gbc_textFieldNombre);
         textFieldNombre.setColumns(10);
 
-        lblApellido = new JLabel("Apellido:");
-        GridBagConstraints gbc_lblApellido = new GridBagConstraints();
-        gbc_lblApellido.insets = new Insets(5, 10, 5, 5);
-        gbc_lblApellido.anchor = GridBagConstraints.EAST;
-        gbc_lblApellido.gridx = 0;
-        gbc_lblApellido.gridy = 3;
-        getContentPane().add(lblApellido, gbc_lblApellido);
+        lblIngreseApellido = new JLabel("Apellido:");
+        lblIngreseApellido.setHorizontalAlignment(SwingConstants.RIGHT);
+        GridBagConstraints gbc_lblIngreseApellido = new GridBagConstraints();
+        gbc_lblIngreseApellido.insets = new Insets(2, 2, 2, 5);
+        gbc_lblIngreseApellido.gridx = 0;
+        gbc_lblIngreseApellido.gridy = 3;
+        getContentPane().add(lblIngreseApellido, gbc_lblIngreseApellido);
 
         textFieldApellido = new JTextField();
-        textFieldApellido.setEditable(false);
         GridBagConstraints gbc_textFieldApellido = new GridBagConstraints();
-        gbc_textFieldApellido.insets = new Insets(5, 0, 5, 10);
+        gbc_textFieldApellido.gridwidth = 2;
+        gbc_textFieldApellido.insets = new Insets(2, 2, 2, 5);
         gbc_textFieldApellido.fill = GridBagConstraints.HORIZONTAL;
         gbc_textFieldApellido.gridx = 1;
         gbc_textFieldApellido.gridy = 3;
         getContentPane().add(textFieldApellido, gbc_textFieldApellido);
         textFieldApellido.setColumns(10);
 
-        lblFechaNac = new JLabel("Fecha Nacimiento:");
-        GridBagConstraints gbc_lblFechaNac = new GridBagConstraints();
-        gbc_lblFechaNac.insets = new Insets(5, 10, 5, 5);
-        gbc_lblFechaNac.anchor = GridBagConstraints.EAST;
-        gbc_lblFechaNac.gridx = 0;
-        gbc_lblFechaNac.gridy = 4;
-        getContentPane().add(lblFechaNac, gbc_lblFechaNac);
+        lblIngreseFechaNac = new JLabel("Fecha de Nacimiento:");
+        lblIngreseFechaNac.setHorizontalAlignment(SwingConstants.RIGHT);
+        GridBagConstraints gbc_lblIngreseFechaNac = new GridBagConstraints();
+        gbc_lblIngreseFechaNac.insets = new Insets(2, 2, 2, 5);
+        gbc_lblIngreseFechaNac.gridx = 0;
+        gbc_lblIngreseFechaNac.gridy = 4;
+        getContentPane().add(lblIngreseFechaNac, gbc_lblIngreseFechaNac);
 
         dateChooser = new JDateChooser();
-        dateChooser.setDateFormatString("dd/MM/yyyy");
+        dateChooser.setDateFormatString("dd/MM/yyyy"); // Configura el formato de la fecha
         GridBagConstraints gbc_dateChooser = new GridBagConstraints();
         gbc_dateChooser.gridwidth = 2;
-        gbc_dateChooser.insets = new Insets(5, 0, 5, 10);
+        gbc_dateChooser.insets = new Insets(2, 2, 2, 5);
         gbc_dateChooser.fill = GridBagConstraints.HORIZONTAL;
         gbc_dateChooser.gridx = 1;
         gbc_dateChooser.gridy = 4;
         getContentPane().add(dateChooser, gbc_dateChooser);
 
-        textFieldFechaNac = new JTextField();
-        textFieldFechaNac.setEditable(false);
-        GridBagConstraints gbc_textFieldFechaNac = new GridBagConstraints();
-        gbc_textFieldFechaNac.insets = new Insets(5, 0, 5, 10);
-        gbc_textFieldFechaNac.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textFieldFechaNac.gridx = 1;
-        gbc_textFieldFechaNac.gridy = 5;
-        getContentPane().add(textFieldFechaNac, gbc_textFieldFechaNac);
-        textFieldFechaNac.setColumns(10);
+        lblIngreseNombreEmpresa = new JLabel("Nombre Empresa:");
+        lblIngreseNombreEmpresa.setHorizontalAlignment(SwingConstants.RIGHT);
+        GridBagConstraints gbc_lblIngreseNombreEmpresa = new GridBagConstraints();
+        gbc_lblIngreseNombreEmpresa.insets = new Insets(2, 2, 2, 5);
+        gbc_lblIngreseNombreEmpresa.gridx = 0;
+        gbc_lblIngreseNombreEmpresa.gridy = 5;
+        getContentPane().add(lblIngreseNombreEmpresa, gbc_lblIngreseNombreEmpresa);
 
-        btnCerrar = new JButton("Cerrar");
-        btnCerrar.addActionListener(new ActionListener() {
+        textFieldNombreEmpresa = new JTextField();
+        GridBagConstraints gbc_textFieldNombreEmpresa = new GridBagConstraints();
+        gbc_textFieldNombreEmpresa.gridwidth = 2;
+        gbc_textFieldNombreEmpresa.insets = new Insets(2, 2, 2, 5);
+        gbc_textFieldNombreEmpresa.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldNombreEmpresa.gridx = 1;
+        gbc_textFieldNombreEmpresa.gridy = 5;
+        getContentPane().add(textFieldNombreEmpresa, gbc_textFieldNombreEmpresa);
+        textFieldNombreEmpresa.setColumns(10);
+
+        lblIngreseUrlEmpresa = new JLabel("URL Empresa:");
+        lblIngreseUrlEmpresa.setHorizontalAlignment(SwingConstants.RIGHT);
+        GridBagConstraints gbc_lblIngreseUrlEmpresa = new GridBagConstraints();
+        gbc_lblIngreseUrlEmpresa.insets = new Insets(2, 2, 2, 5);
+        gbc_lblIngreseUrlEmpresa.gridx = 0;
+        gbc_lblIngreseUrlEmpresa.gridy = 6;
+        getContentPane().add(lblIngreseUrlEmpresa, gbc_lblIngreseUrlEmpresa);
+
+        textFieldUrlEmpresa = new JTextField();
+        GridBagConstraints gbc_textFieldUrlEmpresa = new GridBagConstraints();
+        gbc_textFieldUrlEmpresa.gridwidth = 2;
+        gbc_textFieldUrlEmpresa.insets = new Insets(2, 2, 2, 5);
+        gbc_textFieldUrlEmpresa.fill = GridBagConstraints.HORIZONTAL;
+        gbc_textFieldUrlEmpresa.gridx = 1;
+        gbc_textFieldUrlEmpresa.gridy = 6;
+        getContentPane().add(textFieldUrlEmpresa, gbc_textFieldUrlEmpresa);
+        textFieldUrlEmpresa.setColumns(10);
+
+        btnAceptar = new JButton("Aceptar");
+        btnAceptar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                cmdRegistroProveedorActionPerformed(arg0);
+            }
+        });
+        GridBagConstraints gbc_btnAceptar = new GridBagConstraints();
+        gbc_btnAceptar.insets = new Insets(2, 2, 2, 5);
+        gbc_btnAceptar.gridx = 1;
+        gbc_btnAceptar.gridy = 7;
+        getContentPane().add(btnAceptar, gbc_btnAceptar);
+
+        btnCancelar = new JButton("Cancelar");
+        btnCancelar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 limpiarFormulario();
                 setVisible(false);
             }
         });
-        GridBagConstraints gbc_btnCerrar = new GridBagConstraints();
-        gbc_btnCerrar.insets = new Insets(10, 0, 10, 10);
-        gbc_btnCerrar.gridx = 2;
-        gbc_btnCerrar.gridy = 6;
-        getContentPane().add(btnCerrar, gbc_btnCerrar);
+        GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
+        gbc_btnCancelar.insets = new Insets(2, 2, 2, 5);
+        gbc_btnCancelar.gridx = 2;
+        gbc_btnCancelar.gridy = 7;
+        getContentPane().add(btnCancelar, gbc_btnCancelar);
     }
 
-    protected void cmdBuscarClienteActionPerformed(ActionEvent e) {
-        DataCliente dc;
-        try {
-            dc = sistema.verInfoCliente(textFieldNickname.getText());
-            textFieldNickname.setText(dc.getNickname());
-            textFieldEmail.setText(dc.getEmail());
-            textFieldNombre.setText(dc.getNombre());
-            textFieldApellido.setText(dc.getApellido());
-            
-            // Convierte la fecha de nacimiento de DataCliente a String
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date fecha = sdf.parse(dc.getfNacimiento());
-            dateChooser.setDate(fecha);
-            
-            // Establece la fecha formateada en el textFieldFechaNac
-            String fechaFormateada = sdf.format(fecha);
-            textFieldFechaNac.setText(fechaFormateada);
-        } catch (ClienteNoExisteException e1) {
-            JOptionPane.showMessageDialog(this, e1.getMessage(), "Buscar Cliente", JOptionPane.ERROR_MESSAGE);
+    protected void cmdRegistroProveedorActionPerformed(ActionEvent arg0) {
+        String nicknameP = textFieldNickname.getText();
+        String emailP = textFieldEmail.getText();
+        String nombreP = textFieldNombre.getText();
+        String apellidoP = textFieldApellido.getText();
+        String nombreEmpresaP = textFieldNombreEmpresa.getText();
+        String urlEmpresaP = textFieldUrlEmpresa.getText();
+        Date fechaNacimientoP = dateChooser.getDate(); // Obtiene la fecha como Date
+
+        if (checkFormulario()) {
+            try {
+                Sis.registrarProveedor(nicknameP, emailP, nombreP, apellidoP, nombreEmpresaP, urlEmpresaP, fechaNacimientoP); // Se pasan todos los datos
+
+                JOptionPane.showMessageDialog(this, "El Proveedor se ha creado con éxito", "Registrar Proveedor",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (ProveedorRepetidoException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Registrar Proveedor", JOptionPane.ERROR_MESSAGE);
+            }
+
             limpiarFormulario();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al procesar la fecha", "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
+            setVisible(false);
         }
     }
 
+    private boolean checkFormulario() {
+        String nickname = textFieldNickname.getText();
+        String email = textFieldEmail.getText();
+        String nombre = textFieldNombre.getText();
+        String apellido = textFieldApellido.getText();
+        String nombreEmpresa = textFieldNombreEmpresa.getText();
+        String urlEmpresa = textFieldUrlEmpresa.getText();
+        Date fechaNac = dateChooser.getDate(); // Obtiene la fecha como Date
+
+        if (nickname.isEmpty() || email.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || nombreEmpresa.isEmpty() || urlEmpresa.isEmpty() || fechaNac == null) {
+            JOptionPane.showMessageDialog(this, "No puede haber campos vacíos", "Registrar Proveedor",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+    
     private void limpiarFormulario() {
         textFieldNickname.setText("");
         textFieldEmail.setText("");
         textFieldNombre.setText("");
         textFieldApellido.setText("");
+        textFieldNombreEmpresa.setText("");
+        textFieldUrlEmpresa.setText("");
         dateChooser.setDate(null);
-        textFieldFechaNac.setText("");
     }
 }

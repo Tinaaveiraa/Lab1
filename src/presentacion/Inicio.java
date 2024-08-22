@@ -16,7 +16,7 @@ public class Inicio {
     private JFrame frmInicio;
     private ISistema ISis;
     private CrearCliente creCliInternalFrame;
-    //private CrearProveedor creProvInternalFrame;
+    private CrearProveedor creProvInternalFrame;
     private InfoCliente infoCliInternalFrame;
     private ListarClientes lisCliInternalFrame;
 
@@ -55,11 +55,11 @@ public class Inicio {
         gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0};
         creCliInternalFrame.setVisible(false);
 
-        /*creProvInternalFrame = new CrearProveedor(ISis);
+        creProvInternalFrame = new CrearProveedor(ISis);
         GridBagLayout gridBagLayoutProv = (GridBagLayout) creProvInternalFrame.getContentPane().getLayout();
         gridBagLayoutProv.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0};
         gridBagLayoutProv.columnWeights = new double[]{0.0, 1.0, 0.0};
-        creProvInternalFrame.setVisible(false);*/
+        creProvInternalFrame.setVisible(false);
 
         infoCliInternalFrame = new InfoCliente(ISis);
         infoCliInternalFrame.setVisible(false);
@@ -69,7 +69,7 @@ public class Inicio {
         frmInicio.getContentPane().setLayout(null);
 
         frmInicio.getContentPane().add(creCliInternalFrame);
-        //frmInicio.getContentPane().add(creProvInternalFrame);
+        frmInicio.getContentPane().add(creProvInternalFrame);
         frmInicio.getContentPane().add(lisCliInternalFrame);
     }
 
@@ -119,7 +119,7 @@ public class Inicio {
         menuItemCrearProveedor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para crear un proveedor
-                //creProvInternalFrame.setVisible(true);
+                creProvInternalFrame.setVisible(true);
             }
         });
         menuUsuarios.add(menuItemCrearProveedor);

@@ -12,8 +12,6 @@ import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @SuppressWarnings("serial")
@@ -109,22 +107,20 @@ public class InfoCliente extends JInternalFrame {
         DataCliente dc;
         try {
             dc = sistema.verInfoCliente(textFieldNickname.getText());
+
+            // Mostrar la información del cliente
             textFieldNickname.setText(dc.getNickname());
             textFieldEmail.setText(dc.getEmail());
             textFieldNombre.setText(dc.getNombre());
             textFieldApellido.setText(dc.getApellido());
 
-            // Convierte la fecha de nacimiento de DataCliente a Date
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date fecha = sdf.parse(dc.getfNacimiento()); // `dc.getfNacimiento()` es el String de fecha
+            // Configurar el JDateChooser con el Date devuelto por dc.getfNacimiento()
+            Date fecha = dc.getfNacimiento(); // Ya es de tipo Date
             dateChooser.setDate(fecha);
 
         } catch (ClienteNoExisteException e1) {
             JOptionPane.showMessageDialog(this, e1.getMessage(), "Buscar Cliente", JOptionPane.ERROR_MESSAGE);
             limpiarFormulario();
-        } catch (ParseException ex) {
-            JOptionPane.showMessageDialog(this, "Error al procesar la fecha", "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
         }
     }
 
@@ -134,16 +130,6 @@ public class InfoCliente extends JInternalFrame {
         textFieldNombre.setText("");
         textFieldApellido.setText("");
         dateChooser.setDate(null);
-    }
-
-    private String obtenerFechaString() {
-        Date fecha = dateChooser.getDate();
-        if (fecha != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            return sdf.format(fecha);
-        } else {
-            return null;
-        }
     }
 }
 
