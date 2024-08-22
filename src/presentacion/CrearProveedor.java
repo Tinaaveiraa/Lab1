@@ -20,7 +20,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
 @SuppressWarnings("serial")
-public class InfoCliente extends JInternalFrame {
+public class DataCliente extends JInternalFrame {
 
     private ISistema sistema;
 

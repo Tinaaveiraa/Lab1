@@ -3,13 +3,15 @@ package logica;
  * Datatype para transportar la información de un usuario entre capa lógica y de presentación.
  * En Java los datatypes se definen con setters y getters, y se denominan JavaBean.
  */
+import java.util.Date;
+
 public class DataCliente {
 
 	private String nickname;
 	private String email;
     private String nombre;
     private String apellido;
-    private String fNacimiento;
+    private Date fNacimiento;
     //atributo imagen
 
     public DataCliente() {
@@ -17,11 +19,11 @@ public class DataCliente {
     	this.setEmail(new String());
         this.setNombre(new String());
         this.setApellido(new String());
-        this.setfNacimiento(new String());
+        this.setfNacimiento(new Date());
         //imagen por default
     }
 
-    public DataCliente(String nickname, String email, String nombre, String apellido, String fNacimiento) {
+    public DataCliente(String nickname, String email, String nombre, String apellido, Date fNacimiento) {
     	this.setNickname(nickname);
         this.setEmail(email);
     	this.setNombre(nombre);
@@ -44,15 +46,13 @@ public class DataCliente {
         return apellido;
     }
 
-    public String getfNacimiento() {
+    public Date getfNacimiento() {
         return fNacimiento;
     }
 
-    /* Sirve para mostrar textualmente la información del usuario, por ejemplo en un ComboBox
-     */
-    //public String toString() {
-     //   return getCedulaIdentidad() + " (" + getNombre() + " " + getApellido() + ")";
-   // }
+    public String toString() {
+        return getNickname() + " - " + getNombre() + " " + getApellido() + " " + getEmail() + " " + getfNacimiento() + ".";
+    }
     
     private void setNickname(String nickname) {
         this.nickname = nickname;
@@ -69,7 +69,7 @@ public class DataCliente {
         this.apellido = apellido;
     }
 
-    private void setfNacimiento(String fNacimiento) {
+    private void setfNacimiento(Date fNacimiento) {
         this.fNacimiento = fNacimiento;
     }
 

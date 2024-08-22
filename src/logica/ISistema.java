@@ -4,6 +4,7 @@ import excepciones.ClienteNoExisteException;
 import excepciones.ProveedorNoExisteException;
 import excepciones.ClienteRepetidoException;
 import excepciones.ProveedorRepetidoException;
+import java.util.Date;
 
 public interface ISistema {
 
@@ -16,7 +17,7 @@ public interface ISistema {
      * @param fnacimiento Fecha de nacimiento del cliente.
      * @throws ClienteRepetidoException Si el cliente ya está registrado en el sistema.
      */
-    public abstract void registrarCliente(String nickname, String email, String nombre, String apellido, String fNacimiento) throws ClienteRepetidoException;
+    public abstract void registrarCliente(String nickname, String email, String nombre, String apellido, Date fNacimiento) throws ClienteRepetidoException;
     /**
      * Registra al proveedor en el sistema.
      * @param nickname Nickname del proveedor.
@@ -28,7 +29,7 @@ public interface ISistema {
      * @param nombreEmpresa Nombre de la empresa del proveedor.
      * @throws ProveedorRepetidoException Si el proveedor ya está registrado en el sistema.
      */
-    public abstract void registrarProveedor(String nickname, String email, String nombre, String apellido, String URL, String nombreEmpresa, String fnacimiento) throws ProveedorRepetidoException;
+    public abstract void registrarProveedor(String nickname, String email, String nombre, String apellido, String URL, String nombreEmpresa, Date fnacimiento) throws ProveedorRepetidoException;
 
     /**
      * Retorna la información de un cliente con el nickname indicado.

@@ -3,13 +3,15 @@ package logica;
  * Datatype para transportar la información de un usuario entre capa lógica y de presentación.
  * En Java los datatypes se definen con setters y getters, y se denominan JavaBean.
  */
+import java.util.Date;
+
 public class DataProveedor {
 
 	private String nickname;
 	private String email;
     private String nombre;
     private String apellido;
-    private String fNacimiento;
+    private Date fNacimiento;
     private String URL;
     private String nombreEmpresa;
     //atributo imagen
@@ -19,13 +21,13 @@ public class DataProveedor {
     	this.setEmail(new String());
         this.setNombre(new String());
         this.setApellido(new String());
-        this.setfNacimiento(new String());
+        this.setfNacimiento(new Date());
         this.setURL(new String());
         this.setNombreEmpresa(new String());
         //imagen por default
     }
 
-    public DataProveedor(String nickname, String email, String nombre, String apellido, String fNacimiento, String URL, String nombreEmpresa) {
+    public DataProveedor(String nickname, String email, String nombre, String apellido, Date fNacimiento, String URL, String nombreEmpresa) {
     	this.setNickname(nickname);
         this.setEmail(email);
     	this.setNombre(nombre);
@@ -50,7 +52,7 @@ public class DataProveedor {
         return apellido;
     }
 
-    public String getfNacimiento() {
+    public Date getfNacimiento() {
         return fNacimiento;
     }
     public String getURL() {
@@ -62,9 +64,9 @@ public class DataProveedor {
 
     /* Sirve para mostrar textualmente la información del usuario, por ejemplo en un ComboBox
      */
-    //public String toString() {
-     //   return getCedulaIdentidad() + " (" + getNombre() + " " + getApellido() + ")";
-   // }
+    public String toString() {
+        return getNickname() + " - " + getNombre() + " " + getApellido() + " " + getEmail() + " " + getfNacimiento() + ".";
+    }
     
     private void setNickname(String nickname) {
         this.nickname = nickname;
@@ -81,7 +83,7 @@ public class DataProveedor {
         this.apellido = apellido;
     }
 
-    private void setfNacimiento(String fNacimiento) {
+    private void setfNacimiento(Date fNacimiento) {
         this.fNacimiento = fNacimiento;
     }
     private void setURL(String URL) {

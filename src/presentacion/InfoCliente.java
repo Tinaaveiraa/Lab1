@@ -4,20 +4,17 @@ import javax.swing.JInternalFrame;
 import excepciones.ClienteNoExisteException;
 import logica.DataCliente;
 import logica.ISistema;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
+import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class InfoCliente extends JInternalFrame {
@@ -44,32 +41,18 @@ public class InfoCliente extends JInternalFrame {
         setMaximizable(true);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setClosable(true);
-        setTitle("Consultar Info Cliente");
-        setBounds(30, 30, 400, 300);
+        setTitle("Consultar Información de Cliente");
+        setBounds(30, 30, 400, 320);
 
-        GridBagLayout gridBagLayout = new GridBagLayout();
-        gridBagLayout.columnWidths = new int[] { 120, 200, 0 };
-        gridBagLayout.rowHeights = new int[] { 25, 30, 30, 30, 30, 0 };
-        gridBagLayout.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
-        gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-        getContentPane().setLayout(gridBagLayout);
+        getContentPane().setLayout(null);
 
         lblNickname = new JLabel("Ingrese Nickname:");
-        GridBagConstraints gbc_lblNickname = new GridBagConstraints();
-        gbc_lblNickname.insets = new Insets(10, 10, 5, 5);
-        gbc_lblNickname.anchor = GridBagConstraints.EAST;
-        gbc_lblNickname.gridx = 0;
-        gbc_lblNickname.gridy = 0;
-        getContentPane().add(lblNickname, gbc_lblNickname);
+        lblNickname.setBounds(10, 24, 150, 14);
+        getContentPane().add(lblNickname);
 
         textFieldNickname = new JTextField();
-        GridBagConstraints gbc_textFieldNickname = new GridBagConstraints();
-        gbc_textFieldNickname.insets = new Insets(10, 0, 5, 10);
-        gbc_textFieldNickname.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textFieldNickname.gridx = 1;
-        gbc_textFieldNickname.gridy = 0;
-        getContentPane().add(textFieldNickname, gbc_textFieldNickname);
-        textFieldNickname.setColumns(10);
+        textFieldNickname.setBounds(170, 20, 140, 30);
+        getContentPane().add(textFieldNickname);
 
         btnBuscar = new JButton("Buscar");
         btnBuscar.addActionListener(new ActionListener() {
@@ -77,73 +60,39 @@ public class InfoCliente extends JInternalFrame {
                 cmdBuscarClienteActionPerformed(e);
             }
         });
-        GridBagConstraints gbc_btnBuscar = new GridBagConstraints();
-        gbc_btnBuscar.insets = new Insets(10, 0, 5, 10);
-        gbc_btnBuscar.gridx = 2;
-        gbc_btnBuscar.gridy = 0;
-        getContentPane().add(btnBuscar, gbc_btnBuscar);
+        btnBuscar.setBounds(320, 20, 80, 30);
+        getContentPane().add(btnBuscar);
 
         lblInfoCliente = new JLabel("Información de Cliente");
-        GridBagConstraints gbc_lblInfoCliente = new GridBagConstraints();
-        gbc_lblInfoCliente.insets = new Insets(10, 10, 5, 5);
-        gbc_lblInfoCliente.gridwidth = 3;
-        gbc_lblInfoCliente.gridx = 0;
-        gbc_lblInfoCliente.gridy = 1;
-        getContentPane().add(lblInfoCliente, gbc_lblInfoCliente);
+        lblInfoCliente.setBounds(10, 70, 200, 14);
+        getContentPane().add(lblInfoCliente);
 
         lblNombre = new JLabel("Nombre:");
-        GridBagConstraints gbc_lblNombre = new GridBagConstraints();
-        gbc_lblNombre.insets = new Insets(5, 10, 5, 5);
-        gbc_lblNombre.anchor = GridBagConstraints.EAST;
-        gbc_lblNombre.gridx = 0;
-        gbc_lblNombre.gridy = 2;
-        getContentPane().add(lblNombre, gbc_lblNombre);
+        lblNombre.setBounds(10, 100, 65, 14);
+        getContentPane().add(lblNombre);
 
         textFieldNombre = new JTextField();
         textFieldNombre.setEditable(false);
-        GridBagConstraints gbc_textFieldNombre = new GridBagConstraints();
-        gbc_textFieldNombre.insets = new Insets(5, 0, 5, 10);
-        gbc_textFieldNombre.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textFieldNombre.gridx = 1;
-        gbc_textFieldNombre.gridy = 2;
-        getContentPane().add(textFieldNombre, gbc_textFieldNombre);
-        textFieldNombre.setColumns(10);
+        textFieldNombre.setBounds(80, 93, 260, 30);
+        getContentPane().add(textFieldNombre);
 
         lblApellido = new JLabel("Apellido:");
-        GridBagConstraints gbc_lblApellido = new GridBagConstraints();
-        gbc_lblApellido.insets = new Insets(5, 10, 5, 5);
-        gbc_lblApellido.anchor = GridBagConstraints.EAST;
-        gbc_lblApellido.gridx = 0;
-        gbc_lblApellido.gridy = 3;
-        getContentPane().add(lblApellido, gbc_lblApellido);
+        lblApellido.setBounds(10, 140, 65, 14);
+        getContentPane().add(lblApellido);
 
         textFieldApellido = new JTextField();
         textFieldApellido.setEditable(false);
-        GridBagConstraints gbc_textFieldApellido = new GridBagConstraints();
-        gbc_textFieldApellido.insets = new Insets(5, 0, 5, 10);
-        gbc_textFieldApellido.fill = GridBagConstraints.HORIZONTAL;
-        gbc_textFieldApellido.gridx = 1;
-        gbc_textFieldApellido.gridy = 3;
-        getContentPane().add(textFieldApellido, gbc_textFieldApellido);
-        textFieldApellido.setColumns(10);
+        textFieldApellido.setBounds(80, 133, 260, 30);
+        getContentPane().add(textFieldApellido);
 
         lblFechaNac = new JLabel("Fecha Nacimiento:");
-        GridBagConstraints gbc_lblFechaNac = new GridBagConstraints();
-        gbc_lblFechaNac.insets = new Insets(5, 10, 5, 5);
-        gbc_lblFechaNac.anchor = GridBagConstraints.EAST;
-        gbc_lblFechaNac.gridx = 0;
-        gbc_lblFechaNac.gridy = 4;
-        getContentPane().add(lblFechaNac, gbc_lblFechaNac);
+        lblFechaNac.setBounds(10, 180, 120, 14);
+        getContentPane().add(lblFechaNac);
 
         dateChooser = new JDateChooser();
         dateChooser.setDateFormatString("dd/MM/yyyy");
-        dateChooser.setFocusable(false);
-        GridBagConstraints gbc_dateChooser = new GridBagConstraints();
-        gbc_dateChooser.insets = new Insets(5, 0, 5, 10);
-        gbc_dateChooser.fill = GridBagConstraints.HORIZONTAL;
-        gbc_dateChooser.gridx = 1;
-        gbc_dateChooser.gridy = 4;
-        getContentPane().add(dateChooser, gbc_dateChooser);
+        dateChooser.setBounds(140, 173, 200, 30);
+        getContentPane().add(dateChooser);
 
         btnCerrar = new JButton("Cerrar");
         btnCerrar.addActionListener(new ActionListener() {
@@ -152,11 +101,8 @@ public class InfoCliente extends JInternalFrame {
                 setVisible(false);
             }
         });
-        GridBagConstraints gbc_btnCerrar = new GridBagConstraints();
-        gbc_btnCerrar.insets = new Insets(10, 0, 10, 10);
-        gbc_btnCerrar.gridx = 2;
-        gbc_btnCerrar.gridy = 5;
-        getContentPane().add(btnCerrar, gbc_btnCerrar);
+        btnCerrar.setBounds(290, 220, 80, 30);
+        getContentPane().add(btnCerrar);
     }
 
     protected void cmdBuscarClienteActionPerformed(ActionEvent e) {
@@ -196,7 +142,8 @@ public class InfoCliente extends JInternalFrame {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             return sdf.format(fecha);
         } else {
-            return null; // O cualquier valor que indique que la fecha no está disponible
+            return null;
         }
     }
 }
+
