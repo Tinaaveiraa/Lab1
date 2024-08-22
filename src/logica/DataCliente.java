@@ -1,5 +1,4 @@
 package logica;
-import java.util.Date;
 /**
  * Datatype para transportar la información de un usuario entre capa lógica y de presentación.
  * En Java los datatypes se definen con setters y getters, y se denominan JavaBean.
@@ -10,7 +9,7 @@ public class DataCliente {
 	private String email;
     private String nombre;
     private String apellido;
-    private Date fNacimiento;
+    private String fNacimiento;
     //atributo imagen
 
     public DataCliente() {
@@ -18,11 +17,11 @@ public class DataCliente {
     	this.setEmail(new String());
         this.setNombre(new String());
         this.setApellido(new String());
-        this.setfNacimiento(new Date());
+        this.setfNacimiento(new String());
         //imagen por default
     }
 
-    public DataCliente(String nickname, String email, String nombre, String apellido, Date fNacimiento) {
+    public DataCliente(String nickname, String email, String nombre, String apellido, String fNacimiento) {
     	this.setNickname(nickname);
         this.setEmail(email);
     	this.setNombre(nombre);
@@ -45,7 +44,7 @@ public class DataCliente {
         return apellido;
     }
 
-    public Date getfNacimiento() {
+    public String getfNacimiento() {
         return fNacimiento;
     }
 
@@ -70,7 +69,7 @@ public class DataCliente {
         this.apellido = apellido;
     }
 
-    private void setfNacimiento(Date fNacimiento) {
+    private void setfNacimiento(String fNacimiento) {
         this.fNacimiento = fNacimiento;
     }
 

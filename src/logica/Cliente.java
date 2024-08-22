@@ -8,10 +8,10 @@ public class Cliente {
 	private String email;
     private String nombre;
     private String apellido;
-    private Date fNacimiento;
+    private String fNacimiento;
     //atributo imagen
 
-    public Cliente(String nick, String em, String n, String ap, Date fNac) {
+    public Cliente(String nick, String em, String n, String ap, String fNac) {
     	this.nickname = nick;
     	this.email = em;
     	this.nombre = n;
@@ -35,7 +35,7 @@ public class Cliente {
         return apellido;
     }
 
-    public Date getfNacimiento() {
+    public String getfNacimiento() {
         return fNacimiento;
     }
     public void setNickname(String nick) {
@@ -53,8 +53,17 @@ public class Cliente {
         apellido = ap;
     }
 
-    public void setfNacimiento(Date fNac) {
+    public void setfNacimiento(String fNac) {
         fNacimiento = fNac;
     }
+
+	public Date getToolTipText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public Date setToolTipText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

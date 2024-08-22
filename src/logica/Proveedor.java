@@ -1,19 +1,17 @@
 package logica;
 
-import java.util.Date;
-
 public class Proveedor {
 
 	private String nickname;
 	private String email;
     private String nombre;
     private String apellido;
-    private Date fNacimiento;
+    private String fNacimiento;
     private String URL;
     private String nombreEmpresa;
     //atributo imagen
 
-    public Proveedor(String nick, String em, String n, String ap, Date fNac, String url, String nomEmp) {
+    public Proveedor(String nick, String em, String n, String ap, String fNac, String url, String nomEmp) {
     	this.nickname = nick;
     	this.email = em;
     	this.nombre = n;
@@ -39,7 +37,7 @@ public class Proveedor {
         return apellido;
     }
 
-    public Date getfNacimiento() {
+    public String getfNacimiento() {
         return fNacimiento;
     }
     
@@ -65,7 +63,7 @@ public class Proveedor {
         apellido = ap;
     }
 
-    public void setfNacimiento(Date fNac) {
+    public void setfNacimiento(String fNac) {
         fNacimiento = fNac;
     }
     

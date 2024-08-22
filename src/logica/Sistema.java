@@ -4,7 +4,6 @@ import excepciones.ClienteNoExisteException;
 import excepciones.ProveedorNoExisteException;
 import excepciones.ClienteRepetidoException;
 import excepciones.ProveedorRepetidoException;
-import java.util.Date;
 
 public class Sistema implements ISistema {
 
@@ -12,7 +11,7 @@ public class Sistema implements ISistema {
     }
 
     // Registro de Cliente
-    public void registrarCliente(String nickname, String email, String nombre, String apellido, Date fNacimiento) throws ClienteRepetidoException {
+    public void registrarCliente(String nickname, String email, String nombre, String apellido, String fNacimiento) throws ClienteRepetidoException {
         ManejadorCliente mc = ManejadorCliente.getInstance();
         Cliente c = mc.obtenerCliente(nickname);
         if (c != null)
@@ -23,7 +22,7 @@ public class Sistema implements ISistema {
     }
 
     // Registro de Proveedor
-    public void registrarProveedor(String nickname, String email, String nombre, String apellido, Date fnacimiento, String URL, String nombreEmpresa) throws ProveedorRepetidoException {
+    public void registrarProveedor(String nickname, String email, String nombre, String apellido, String URL, String nombreEmpresa, String fnacimiento) throws ProveedorRepetidoException {
         ManejadorProveedor mp = ManejadorProveedor.getInstance();
         Proveedor p = mp.obtenerProveedor(nickname);
         if (p != null)

@@ -1,29 +1,24 @@
 package presentacion;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
 import logica.Fabrica;
 import logica.ISistema;
-
 import javax.swing.JMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import com.toedter.calendar.JDateChooser;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 
 public class Inicio {
 
     private JFrame frmInicio;
     private ISistema ISis;
     private CrearCliente creCliInternalFrame;
-    //private ConsultarUsuario conUsrInternalFrame;
-    //private ListaUsuarios lisUsrInternalFrame;
+    private CrearProveedor creProvInternalFrame;
+    private InfoCliente infoCliInternalFrame;
+    private ListarClientes lisCliInternalFrame;
 
     /**
      * Launch the application.
@@ -60,26 +55,22 @@ public class Inicio {
         gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0};
         creCliInternalFrame.setVisible(false);
 
-        /*conCliInternalFrame = new ConsultarCliente(ISis);
-        conCliInternalFrame.setVisible(false);*/
+        creProvInternalFrame = new CrearProveedor(ISis);
+        GridBagLayout gridBagLayoutProv = (GridBagLayout) creProvInternalFrame.getContentPane().getLayout();
+        gridBagLayoutProv.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0};
+        gridBagLayoutProv.columnWeights = new double[]{0.0, 1.0, 0.0};
+        creProvInternalFrame.setVisible(false);
 
-        /*lisCliInternalFrame = new ListaUsuarios(ISis);
+        infoCliInternalFrame = new InfoCliente(ISis);
+        infoCliInternalFrame.setVisible(false);
+
+        lisCliInternalFrame = new ListarClientes(ISis);
         lisCliInternalFrame.setVisible(false);
-        frmGestionDeUsuarios.getContentPane().setLayout(null);*/
+        frmInicio.getContentPane().setLayout(null);
 
-        //frmGestionDeUsuarios.getContentPane().add(conCliInternalFrame);
         frmInicio.getContentPane().add(creCliInternalFrame);
-        
-        JDateChooser dateChooser = new JDateChooser();
-        dateChooser.getCalendarButton().setBounds(164, 0, 21, 214);
-        dateChooser.setLayout(null);
-        GridBagConstraints gbc_dateChooser = new GridBagConstraints();
-        gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
-        gbc_dateChooser.fill = GridBagConstraints.BOTH;
-        gbc_dateChooser.gridx = 1;
-        gbc_dateChooser.gridy = 2;
-        creCliInternalFrame.getContentPane().add(dateChooser, gbc_dateChooser);
-        //frmGestionDeUsuarios.getContentPane().add(lisCliInternalFrame);
+        frmInicio.getContentPane().add(creProvInternalFrame);
+        frmInicio.getContentPane().add(lisCliInternalFrame);
     }
 
     /**
@@ -112,7 +103,7 @@ public class Inicio {
         });
         menuSistema.add(menuSalir);
 
-        JMenu menuUsuarios = new JMenu("Usuarios");
+        JMenu menuUsuarios = new JMenu("Gestión de Usuarios");
         menuBar.add(menuUsuarios);
 
         JMenuItem menuItemRegistrar = new JMenuItem("Registrar Cliente");
@@ -123,26 +114,35 @@ public class Inicio {
             }
         });
         menuUsuarios.add(menuItemRegistrar);
-        /*
-        JMenuItem menuItemVerInfo = new JMenuItem("Ver Información");
+
+        JMenuItem menuItemCrearProveedor = new JMenuItem("Registrar Proveedor");
+        menuItemCrearProveedor.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Muestro el InternalFrame para crear un proveedor
+                creProvInternalFrame.setVisible(true);
+            }
+        });
+        menuUsuarios.add(menuItemCrearProveedor);
+
+        JMenuItem menuItemVerInfo = new JMenuItem("Ver Información Cliente");
         menuItemVerInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver información de un usuario
-                conCliInternalFrame.setVisible(true);
+                infoCliInternalFrame.setVisible(true);
             }
         });
         menuUsuarios.add(menuItemVerInfo);
 
-        JMenuItem mntmListaUsuarios = new JMenuItem("ListarUsuarios");
-        mntmListaUsuarios.addActionListener(new ActionListener() {
+        JMenuItem mntmListaClientes = new JMenuItem("Listar Clientes");
+        mntmListaClientes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Muestro el InternalFrame para ver la lista de todos los usuarios,
                 // cargando previamente la lista
-                lisUsrInternalFrame.cargarUsuarios();
-                lisUsrInternalFrame.setVisible(true);
+                lisCliInternalFrame.cargarClientes();
+                lisCliInternalFrame.setVisible(true);
             }
         });
-        menuUsuarios.add(mntmListaUsuarios);*/
+        menuUsuarios.add(mntmListaClientes);
     }
 }
 
